@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Dashboard\Guests\Edit;
+namespace App\Http\Livewire\Admin\Dashboard\Sellers\Edit;
 
 use Exception;
 use App\Models\User;
@@ -12,7 +12,7 @@ class Index extends Component
 {
     public $user;
 
-    public $name, $user_name, $email, $number, $role;
+    public $name, $user_name, $email, $number;
 
     public function mount($slug)
     {
@@ -27,13 +27,13 @@ class Index extends Component
             $this->role = $this->user->role;
         } else {
             session()->flash('error', trans('alerts.error'));
-            return redirect(route('AdminGuests', App::getLocale()));
+            return redirect(route('AdminSellers', App::getLocale()));
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.dashboard.guests.edit.index')
+        return view('livewire.admin.dashboard.sellers.edit.index')
             ->extends('layouts.dashboard')
             ->section('content');
     }
@@ -45,7 +45,6 @@ class Index extends Component
             'user_name' => 'required|string|unique:users,user_name,' . $this->user->id,
             'email' => 'required|email|unique:users,email,' . $this->user->id,
             'number' => 'required|numeric|unique:users,number,' . $this->user->id,
-            'role' => 'required|string|in:user,guest',
         ]);
 
         $data = [
@@ -53,13 +52,12 @@ class Index extends Component
             'user_name' => $validated['user_name'],
             'email' => $validated['email'],
             'number' => $validated['number'],
-            'role' => $validated['role'],
         ];
 
         try {
             $this->user->update($data);
             session()->flash('success', trans('alerts.update'));
-            return redirect(route('AdminEditGuest', ['slug' => $this->user->slug, 'lang' => App::getLocale()]));
+            return redirect(route('AdminEditSeller', ['slug' => $this->user->slug, 'lang' => App::getLocale()]));
         } catch (Exception $e) {
             return session()->flash('error', trans('alerts.error'));
         }

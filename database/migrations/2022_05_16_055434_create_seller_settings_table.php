@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('business_settings', function (Blueprint $table) {
+        Schema::create('seller_settings', function (Blueprint $table) {
             $table->id();
 
             //User Foreign Key
@@ -30,13 +30,6 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            //Currency Foreign Key
-            $table->unsignedBigInteger('currency_id')->nullable();
-            $table->foreign('currency_id')->references('id')
-                ->on('currencies')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
 
             $table->timestamps();
         });
@@ -49,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_settings');
+        Schema::dropIfExists('seller_settings');
     }
 };

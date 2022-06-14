@@ -45,7 +45,7 @@
                 <a class="nav-link text-white @if (Request::path() == 'Admin/Sellers/' . App::getLocale()) ? active bg-gradient-primary : '' @endif"
                     href="{{ route('AdminSellers', App::getLocale()) }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-Buyers"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                     <span class="nav-link-text ms-1">{{ trans('admin.sellers') }}</span>
                 </a>

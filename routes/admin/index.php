@@ -7,20 +7,20 @@ use App\Http\Livewire\Admin\Dashboard\Index as AdminDashboard;
 /*End::Dashboard*/
 
 
-/*Begin::Users*/
-use App\Http\Livewire\Admin\Dashboard\Users\Index as Users;
-use App\Http\Livewire\Admin\Dashboard\Users\Add\Index as AddUser;
-use App\Http\Livewire\Admin\Dashboard\Users\Edit\Index as EditUser;
-use App\Http\Livewire\Admin\Dashboard\Users\UpdatePassword\Index as UpdateUserPassword;
-/*End::Users*/
+/*Begin::Buyers*/
+use App\Http\Livewire\Admin\Dashboard\Buyers\Index as Buyers;
+use App\Http\Livewire\Admin\Dashboard\Buyers\Add\Index as AddBuyer;
+use App\Http\Livewire\Admin\Dashboard\Buyers\Edit\Index as EditBuyer;
+use App\Http\Livewire\Admin\Dashboard\Buyers\UpdatePassword\Index as UpdateBuyerPassword;
+/*End::Buyers*/
 
 
-/*Begin::Guests*/
-use App\Http\Livewire\Admin\Dashboard\Guests\Index as Guests;
-use App\Http\Livewire\Admin\Dashboard\Guests\Add\Index as AddGuest;
-use App\Http\Livewire\Admin\Dashboard\Guests\Edit\Index as EditGuest;
-use App\Http\Livewire\Admin\Dashboard\Guests\UpdatePassword\Index as UpdateGuestPassword;
-/*End::Guests*/
+/*Begin::Sellers*/
+use App\Http\Livewire\Admin\Dashboard\Sellers\Index as Sellers;
+use App\Http\Livewire\Admin\Dashboard\Sellers\Add\Index as AddSeller;
+use App\Http\Livewire\Admin\Dashboard\Sellers\Edit\Index as EditSeller;
+use App\Http\Livewire\Admin\Dashboard\Sellers\UpdatePassword\Index as UpdateSellerPassword;
+/*End::Sellers*/
 
 
 /*Begin::Settings*/
@@ -43,37 +43,35 @@ Route::middleware(['auth', 'admin'])->prefix('Admin')->group(function () {
         ->name('AdminDashboard');
     /*End::Dashboard*/
 
-    /*Begin::Users*/
-    Route::get('Users/{lang?}', Users::class)
-        ->name('AdminUsers');
+    /*Begin::Buyers*/
+    Route::get('Buyers/{lang?}', Buyers::class)
+        ->name('AdminBuyers');
 
-    Route::get('AddUser/{lang?}', AddUser::class)
-        ->name('AdminAddUser');
-
-
-    Route::get('EditUser/{slug}/{lang?}', EditUser::class)
-        ->name('AdminEditUser');
-
-    Route::get('UpdateUser/{slug}/Password/{lang?}', UpdateUserPassword::class)
-        ->name('AdminUpdateUserPassword');
-    /*End::Users*/
+    Route::get('AddBuyer/{lang?}', AddBuyer::class)
+        ->name('AdminAddBuyer');
 
 
-    /*Begin::Guests*/
-    Route::get('Guests/{lang?}', Guests::class)
-        ->name('AdminGuests');
+    Route::get('EditBuyer/{slug}/{lang?}', EditBuyer::class)
+        ->name('AdminEditBuyer');
 
-    Route::get('AddGuest/{lang?}', AddGuest::class)
-        ->name('AdminAddGuest');
-
-    Route::get('EditGuest/{slug}/{lang?}', EditGuest::class)
-        ->name('AdminEditGuest');
-
-    Route::get('UpdateGuest/{slug}/Password/{lang?}', UpdateGuestPassword::class)
-        ->name('AdminUpdateGuestPassword');
-    /*End::Guests*/
+    Route::get('UpdateBuyer/{slug}/Password/{lang?}', UpdateBuyerPassword::class)
+        ->name('AdminUpdateBuyerPassword');
+    /*End::Buyers*/
 
 
+    /*Begin::Sellers*/
+    Route::get('Sellers/{lang?}', Sellers::class)
+        ->name('AdminSellers');
+
+    Route::get('AddSeller/{lang?}', AddSeller::class)
+        ->name('AdminAddSeller');
+
+    Route::get('EditSeller/{slug}/{lang?}', EditSeller::class)
+        ->name('AdminEditSeller');
+
+    Route::get('UpdateSeller/{slug}/Password/{lang?}', UpdateSellerPassword::class)
+        ->name('AdminUpdateSellerPassword');
+    /*End::Sellers*/
 
     /*Begin::Settings*/
     Route::get('Settings/General/{lang?}', Settings::class)

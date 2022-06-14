@@ -42,6 +42,7 @@ class Index extends Component
                 'email' => $validated['email'],
                 'password' => bcrypt($validated['password']),
                 'slug' => strtoupper(Str::random(20)),
+                'role' => 'buyer',
             ];
             User::create($data);
             session()->flash('success', trans('alerts.add'));

@@ -45,7 +45,6 @@ class Index extends Component
             'user_name' => 'required|string|unique:users,user_name,' . $this->user->id,
             'email' => 'required|email|unique:users,email,' . $this->user->id,
             'number' => 'required|numeric|unique:users,number,' . $this->user->id,
-            'role' => 'required|string|in:user,guest',
         ]);
 
         $data = [
@@ -53,7 +52,6 @@ class Index extends Component
             'user_name' => $validated['user_name'],
             'email' => $validated['email'],
             'number' => $validated['number'],
-            'role' => $validated['role'],
         ];
 
         try {

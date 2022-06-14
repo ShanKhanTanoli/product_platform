@@ -6,7 +6,7 @@
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                         <h6 class="text-white text-capitalize ps-3">
-                            {{ trans('admin.add-guest') }}
+                            {{ trans('admin.add-seller') }}
                         </h6>
                     </div>
                 </div>
@@ -16,10 +16,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.guest-name') }}</label>
+                                        <label for="name">{{ trans('admin.seller-name') }}</label>
                                         <input type="text" wire:model.defer='name' value="{{ old('name') }}"
                                             class="form-control  @error('name') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.guest-name') }}">
+                                            placeholder="{{ trans('admin.seller-name') }}">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -29,10 +29,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.guest-username') }}</label>
+                                        <label for="name">{{ trans('admin.seller-username') }}</label>
                                         <input type="text" wire:model.defer='user_name' value="{{ old('user_name') }}"
                                             class="form-control  @error('user_name') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.guest-username') }}">
+                                            placeholder="{{ trans('admin.seller-username') }}">
                                         @error('user_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -44,10 +44,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.guest-number') }}</label>
+                                        <label for="name">{{ trans('admin.seller-number') }}</label>
                                         <input type="text" wire:model.defer='number' value="{{ old('number') }}"
                                             class="form-control  @error('number') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.guest-number') }}">
+                                            placeholder="{{ trans('admin.seller-number') }}">
                                         @error('number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -57,10 +57,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.guest-email') }}</label>
+                                        <label for="name">{{ trans('admin.seller-email') }}</label>
                                         <input type="text" wire:model.defer='email' value="{{ old('email') }}"
                                             class="form-control  @error('email') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.guest-email') }}">
+                                            placeholder="{{ trans('admin.seller-email') }}">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -70,11 +70,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.guest-password') }}</label>
+                                        <label for="name">{{ trans('admin.seller-password') }}</label>
                                         <input type="password" wire:model.defer='password'
                                             value="{{ old('password') }}"
                                             class="form-control  @error('password') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.guest-password') }}">
+                                            placeholder="{{ trans('admin.seller-password') }}">
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -84,27 +84,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.guest-confirm-password') }}</label>
+                                        <label for="name">{{ trans('admin.seller-confirm-password') }}</label>
                                         <input type="password" wire:model.defer='password_confirmation'
                                             value="{{ old('password_confirmation') }}"
                                             class="form-control  @error('password_confirmation') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.guest-confirm-password') }}">
+                                            placeholder="{{ trans('admin.seller-confirm-password') }}">
                                         @error('password_confirmation')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="input-group input-group-static my-3">
-                                        <label for="role">User Role</label>
-                                        <select wire:model.defer='role'
-                                            class="form-control  @error('role') is-invalid @enderror">
-                                            <option value="user">User</option>
-                                            <option value="guest">Guest</option>
-                                        </select>
-                                        @error('role')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

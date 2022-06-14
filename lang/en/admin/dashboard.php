@@ -3,8 +3,8 @@
 return [
         /*Begin::Admin Dashboard Sidebar*/
         'dashboard' => 'Dashboard',
-        'business' => 'Business',
-        'clients' => 'Clients',
+        'buyers' => 'Buyers',
+        'sellers' => 'Sellers',
         'events' => 'Events',
         'plans' => 'Plans',
         'subscriptions' => 'Subscriptions',

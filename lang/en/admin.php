@@ -7,9 +7,9 @@ return array_merge(
     include('admin/dashboard.php'),
     /*End::Dashboard*/
 
-    /*Begin::Business Clients*/
-    include('admin/users-guests.php'),
-    /*End::Business Clients*/
+    /*Begin::Buyers Sellers*/
+    include('admin/buyers-sellers.php'),
+    /*End::Buyers Sellers*/
 
     /*Begin::Events*/
     include('admin/events.php'),

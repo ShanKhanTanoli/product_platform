@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\ClientSetting;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('guest_settings', function (Blueprint $table) {
+        Schema::create('buyer_settings', function (Blueprint $table) {
             $table->id();
 
             //User Foreign Key
@@ -31,6 +30,13 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            //Currency Foreign Key
+            $table->unsignedBigInteger('currency_id')->nullable();
+            $table->foreign('currency_id')->references('id')
+                ->on('currencies')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
 
             $table->timestamps();
         });
@@ -43,6 +49,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_settings');
+        Schema::dropIfExists('buyer_settings');
     }
 };

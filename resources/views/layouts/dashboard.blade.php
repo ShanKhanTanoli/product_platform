@@ -34,15 +34,15 @@
             <!--Begin::Sidebar-->
         @endif
 
-        @if ($user->role == 'user')
+        @if ($user->role == 'buyer')
             <!--Begin::Sidebar-->
-            @include('livewire.user.dashboard.partials.sidebar')
+            @include('livewire.buyer.dashboard.partials.sidebar')
             <!--Begin::Sidebar-->
         @endif
 
-        @if ($user->role == 'guest')
+        @if ($user->role == 'seller')
             <!--Begin::Sidebar-->
-            @include('livewire.guest.dashboard.partials.sidebar')
+            @include('livewire.seller.dashboard.partials.sidebar')
             <!--Begin::Sidebar-->
         @endif
 
@@ -56,6 +56,18 @@
             @if ($user->role == 'admin')
                 <!--Begin::Top-Bar-->
                 @livewire('admin.dashboard.partials.top-bar')
+                <!--Begin::Top-Bar-->
+            @endif
+
+            @if ($user->role == 'buyer')
+                <!--Begin::Top-Bar-->
+                @livewire('buyer.dashboard.partials.top-bar')
+                <!--Begin::Top-Bar-->
+            @endif
+
+            @if ($user->role == 'seller')
+                <!--Begin::Top-Bar-->
+                @livewire('seller.dashboard.partials.top-bar')
                 <!--Begin::Top-Bar-->
             @endif
 

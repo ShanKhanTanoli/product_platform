@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Dashboard\Guests\Add;
+namespace App\Http\Livewire\Admin\Dashboard\Sellers\Add;
 
 use Exception;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\App;
 
 class Index extends Component
 {
-    public $name, $user_name, $number, $email, $password, $password_confirmation, $parent_business_id;
+    public $name, $user_name, $number, $email, $password, $password_confirmation;
 
     public function mount()
     {
@@ -20,7 +20,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.admin.dashboard.guests.add.index')
+        return view('livewire.admin.dashboard.sellers.add.index')
             ->extends('layouts.dashboard')
             ->section('content');
     }
@@ -34,7 +34,6 @@ class Index extends Component
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|confirmed',
             'password_confirmation' => 'required|string',
-            'role' => 'required|string|in:user,guest',
         ]);
         try {
             $data = [
@@ -43,12 +42,12 @@ class Index extends Component
                 'email' => $validated['email'],
                 'number' => $validated['number'],
                 'password' => bcrypt($validated['password']),
-                'role' => $validated['role'],
                 'slug' => strtoupper(Str::random(20)),
+                'role' => 'seller',
             ];
             User::create($data);
             session()->flash('success', trans('alerts.add'));
-            return redirect(route('AdminGuests', App::getLocale()));
+            return redirect(route('AdminSellers', App::getLocale()));
         } catch (Exception $e) {
             return session()->flash('error', trans('alerts.error'));
         }

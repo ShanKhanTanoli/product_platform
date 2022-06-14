@@ -8,15 +8,15 @@
                         <i class="fas fa-business-time opacity-10"></i>
                     </div>
                     <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">{{ trans('admin.users') }}</p>
+                        <p class="text-sm mb-0 text-capitalize">{{ trans('admin.buyers') }}</p>
                         <h4 class="mb-0">
-                            {{ User::count() }}
+                            {{ Buyer::count() }}
                         </h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
                 <div class="card-footer p-3 text-center">
-                    <a href="{{ route('AdminUsers', App::getLocale()) }}" class="btn bg-gradient-dark">
+                    <a href="{{ route('AdminBuyers', App::getLocale()) }}" class="btn bg-gradient-dark">
                         {{ trans('admin.view-all') }}
                     </a>
                 </div>
@@ -30,15 +30,15 @@
                         <i class="fas fa-users opacity-10"></i>
                     </div>
                     <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">{{ trans('admin.guests') }}</p>
+                        <p class="text-sm mb-0 text-capitalize">{{ trans('admin.sellers') }}</p>
                         <h4 class="mb-0">
-                            {{ Guest::count() }}
+                            {{ Seller::count() }}
                         </h4>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
                 <div class="card-footer p-3 text-center">
-                    <a href="{{ route('AdminGuests', App::getLocale()) }}" class="btn bg-gradient-dark">
+                    <a href="{{ route('AdminSellers', App::getLocale()) }}" class="btn bg-gradient-dark">
                         {{ trans('admin.view-all') }}
                     </a>
                 </div>

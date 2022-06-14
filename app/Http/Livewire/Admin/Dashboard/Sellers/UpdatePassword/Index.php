@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Dashboard\Guests\UpdatePassword;
+namespace App\Http\Livewire\Admin\Dashboard\Sellers\UpdatePassword;
 
 use Exception;
 use App\Models\User;
@@ -22,13 +22,13 @@ class Index extends Component
             ->first();
         if (!$this->user) {
             session()->flash('error', trans('alerts.error'));
-            return redirect(route('AdminGuests', App::getLocale()));
+            return redirect(route('AdminSellers', App::getLocale()));
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.dashboard.guests.update-password.index')
+        return view('livewire.admin.dashboard.sellers.update-password.index')
             ->extends('layouts.dashboard')
             ->section('content');
     }
@@ -43,7 +43,7 @@ class Index extends Component
             $this->user->update(['password' => bcrypt($validated['password'])]);
             session()->flash('success', trans('alerts.update'));
             $this->reset(['password', 'password_confirmation']);
-            return redirect(route('AdminUpdateGuestPassword', ['slug' => $this->user->slug, 'lang' => App::getLocale()]));
+            return redirect(route('AdminUpdateSellerPassword', ['slug' => $this->user->slug, 'lang' => App::getLocale()]));
         } catch (Exception $e) {
             return session()->flash('error', trans('alerts.error'));
         }
