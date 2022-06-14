@@ -43,28 +43,28 @@ return new class extends Migration
             'slug' => strtoupper(Str::random(20)),
         ]);
 
-        for ($user = 1; $user < 4; $user++) {
+        for ($buyer = 1; $buyer < 4; $buyer++) {
             User::create([
-                'name' => 'user' . $user,
-                'user_name' => 'user' . $user,
-                'email' => 'user' . $user . '@email.com',
+                'name' => 'buyer' . $buyer,
+                'user_name' => 'buyer' . $buyer,
+                'email' => 'buyer' . $buyer . '@email.com',
                 'number' => mt_rand(100000000000, 999999999999),
                 'address' => 'This is the address',
                 'password' => bcrypt('password'),
-                'role' => 'user',
+                'role' => 'buyer',
                 'slug' => strtoupper(Str::random(20)),
             ]);
         }
 
-        for ($guest = 1; $guest < 4; $guest++) {
+        for ($seller = 1; $seller < 4; $seller++) {
             User::create([
-                'name' => 'guest' . $guest,
-                'user_name' => 'guest' . $guest,
-                'email' => 'guest' . $guest . '@email.com',
+                'name' => 'seller' . $seller,
+                'user_name' => 'seller' . $seller,
+                'email' => 'seller' . $seller . '@email.com',
                 'number' => mt_rand(100000000000, 999999999999),
                 'address' => 'This is the address',
                 'password' => bcrypt('password'),
-                'role' => 'guest',
+                'role' => 'seller',
                 'slug' => strtoupper(Str::random(20)),
             ]);
         }

@@ -24,30 +24,30 @@
             </li>
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">
-                    {{ trans('admin.users') }}
+                    {{ trans('admin.buyers') }}
                 </h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white @if (Request::path() == 'Admin/Users/' . App::getLocale()) ? active bg-gradient-primary : '' @endif"
-                    href="{{ route('AdminUsers', App::getLocale()) }}">
+                <a class="nav-link text-white @if (Request::path() == 'Admin/Buyers/' . App::getLocale()) ? active bg-gradient-primary : '' @endif"
+                    href="{{ route('AdminBuyers', App::getLocale()) }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-business-time"></i>
                     </div>
-                    <span class="nav-link-text ms-1">{{ trans('admin.users') }}</span>
+                    <span class="nav-link-text ms-1">{{ trans('admin.buyers') }}</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">
-                    {{ trans('admin.guests') }}
+                    {{ trans('admin.sellers') }}
                 </h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white @if (Request::path() == 'Admin/Guests/' . App::getLocale()) ? active bg-gradient-primary : '' @endif"
-                    href="{{ route('AdminGuests', App::getLocale()) }}">
+                <a class="nav-link text-white @if (Request::path() == 'Admin/Sellers/' . App::getLocale()) ? active bg-gradient-primary : '' @endif"
+                    href="{{ route('AdminSellers', App::getLocale()) }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-Buyers"></i>
                     </div>
-                    <span class="nav-link-text ms-1">{{ trans('admin.guests') }}</span>
+                    <span class="nav-link-text ms-1">{{ trans('admin.sellers') }}</span>
                 </a>
             </li>
             <li class="nav-item mt-3">

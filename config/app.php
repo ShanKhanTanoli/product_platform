@@ -194,15 +194,11 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
 
         'Helper' => App\Helpers\Helper::class,
-        'Setting' => App\Models\Setting::class,
-        'Event' => App\Helpers\Event\Event::class,
         'Admin' => App\Helpers\Admin\Admin::class,
-        'Guest' => App\Helpers\Guest\Guest::class,
-        'Stripe' => App\Helpers\Stripe\Stripe::class,
-        'User' => App\Helpers\User\User::class,
+        'Buyer' => App\Helpers\Buyer\Buyer::class,
+        'Seller' => App\Helpers\Seller\Seller::class,
         'Currency' => App\Helpers\Currency\Currency::class,
         'Language' => App\Helpers\Language\Language::class,
-        'Payments' => App\Helpers\Payments\Payments::class,
 
     ])->toArray(),
 

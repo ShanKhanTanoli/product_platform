@@ -12,10 +12,10 @@ class Redirect
         if ($user = Auth::user()) {
             if ($user->role == "admin") {
                 return route('AdminDashboard', App::getLocale());
-            } elseif ($user->role == "user") {
-                return route('UserDashboard', App::getLocale());
-            } elseif ($user->role == "guest") {
-                return route('GuestDashboard', App::getLocale());
+            } elseif ($user->role == "buyer") {
+                return route('BuyerDashboard', App::getLocale());
+            } elseif ($user->role == "seller") {
+                return route('SellerDashboard', App::getLocale());
             } else return route('login', App::getLocale());
         } else return route('login', App::getLocale());
     }

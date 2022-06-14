@@ -18,7 +18,6 @@ Route::get('lang/{lang?}', function ($lang = "en") {
 });
 
 Route::get('debug', function () {
-
 });
 
 
@@ -28,21 +27,23 @@ Route::get('/home/{lang?}', function () {
 
 
 Route::get('/{lang?}', function ($lang = "en") {
+    
     App::setLocale($lang);
     return redirect(Redirect::ToDashboard());
+
 })->name('main');
 
 /*Begin::Admin Routes*/
 include('admin/index.php');
 /*End::Admin Routes*/
 
-/*Begin::user Routes*/
-include('user/index.php');
-/*End::user Routes*/
+/*Begin::Buyer Routes*/
+include('buyer/index.php');
+/*End::Buyer Routes*/
 
-/*Begin::guest Routes*/
-include('guest/index.php');
-/*End::guest Routes*/
+/*Begin::Seller Routes*/
+include('seller/index.php');
+/*End::Seller Routes*/
 
 /*Begin::Auth Routes*/
 include('auth/index.php');
