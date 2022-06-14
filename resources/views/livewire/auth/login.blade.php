@@ -48,6 +48,26 @@
                                     </div>
                                 </form>
                             </div>
+                            <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                <p class="mb-2 text-sm mx-auto">
+                                    <a href="{{ route('BuyerRegister', App::getLocale()) }}"
+                                        class="text-primary font-weight-bold">
+                                        Register as a Buyer ?
+                                    </a>
+                                </p>
+                                <p class="mb-2 text-sm mx-auto">
+                                    <a href="{{ route('SellerRegister', App::getLocale()) }}"
+                                        class="text-primary font-weight-bold">
+                                        Register as a Seller ?
+                                    </a>
+                                </p>
+                                <p class="mb-2 text-sm mx-auto">
+                                    <a href="{{ route('forgot-password',App::getLocale()) }}"
+                                        class="text-primary font-weight-bold">
+                                        Forgot your password ? Reset here
+                                    </a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

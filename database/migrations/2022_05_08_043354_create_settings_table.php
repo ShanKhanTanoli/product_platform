@@ -43,7 +43,7 @@ return new class extends Migration
         });
 
         Setting::create([
-            'company_name' => 'LDAP',
+            'company_name' => 'Product Platform',
             'company_email' => 'company@email.com',
             'company_phone' => '+00000000000',
             'company_address' => 'This is the Address',

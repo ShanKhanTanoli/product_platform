@@ -6,15 +6,11 @@ use App\Models\User;
 use Livewire\Component;
 use App\Helpers\Redirect;
 use Illuminate\Support\Str;
-use App\Notifications\Alerts;
-use App\Helpers\Business\Business;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 
-class GuestRegister extends Component
+class BuyerRegister extends Component
 {
-
-    public $business;
     public $name;
     public $email;
     public $password;
@@ -27,19 +23,9 @@ class GuestRegister extends Component
         'password_confirmation' => 'required|min:6'
     ];
 
-    public function mount($lang = "en", $user_name = null)
+    public function mount($lang = "en")
     {
-        //Set language
-        App::setlocale($lang);
-
-        //If user exists
-        if ($user_name) {
-            if ($business = Business::FindByUserName($user_name)) {
-                $this->business = $business;
-            } else abort(404);
-        } else abort(404);
-
-        //If user is logged in
+        App::setLocale($lang);
         if (auth()->user()) {
             redirect(Redirect::ToDashboard());
         }
@@ -52,21 +38,17 @@ class GuestRegister extends Component
             'name' => $this->name,
             'user_name' => Str::random(10),
             'email' => $this->email,
-            'role' => 'client',
-            'role_id' => 3,
+            'role' => 'buyer',
             'password' => Hash::make($this->password),
             'slug' => Str::random(20),
         ]);
-
         auth()->login($user);
-
-
         return redirect(Redirect::ToDashboard());
     }
 
     public function render()
     {
-        return view('livewire.auth.client-register')
+        return view('livewire.auth.buyer-register')
             ->extends('layouts.auth');
     }
 }

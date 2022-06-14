@@ -6,12 +6,13 @@ use App\Models\User;
 use Livewire\Component;
 use App\Helpers\Redirect;
 use Illuminate\Support\Str;
-use App\Notifications\Alerts;
+use App\Helpers\Seller\Seller;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 
-class UserRegister extends Component
+class SellerRegister extends Component
 {
+
     public $name;
     public $email;
     public $password;
@@ -26,7 +27,10 @@ class UserRegister extends Component
 
     public function mount($lang = "en")
     {
-        App::setLocale($lang);
+        //Set language
+        App::setlocale($lang);
+
+        //If user is logged in
         if (auth()->user()) {
             redirect(Redirect::ToDashboard());
         }
@@ -39,8 +43,7 @@ class UserRegister extends Component
             'name' => $this->name,
             'user_name' => Str::random(10),
             'email' => $this->email,
-            'role' => 'business',
-            'role_id' => 2,
+            'role' => 'seller',
             'password' => Hash::make($this->password),
             'slug' => Str::random(20),
         ]);
@@ -50,7 +53,7 @@ class UserRegister extends Component
 
     public function render()
     {
-        return view('livewire.auth.business-register')
+        return view('livewire.auth.seller-register')
             ->extends('layouts.auth');
     }
 }

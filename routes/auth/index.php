@@ -5,19 +5,17 @@ use App\Http\Livewire\Auth\Logout;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\Auth\VerifyEmail;
 use App\Http\Livewire\Auth\ResetPassword;
-use App\Http\Livewire\Auth\GuestRegister;
+use App\Http\Livewire\Auth\SellerRegister;
 use App\Http\Livewire\Auth\ForgotPassword;
-use App\Http\Livewire\Auth\UserRegister;
+use App\Http\Livewire\Auth\BuyerRegister;
 
 /*Begin::Auth Routes*/
 
-Route::get('RegisterUser/{lang?}', function(){
-    return redirect(route('login'));
-})->name('UserRegister');
+Route::get('RegisterBuyer/{lang?}', BuyerRegister::class)
+    ->name('BuyerRegister');
 
-Route::get('RegisterGuest/{user_name?}/{lang?}', function(){
-    return redirect(route('login'));
-})->name('GuestRegister');
+Route::get('RegisterSeller/{lang?}', SellerRegister::class)
+    ->name('SellerRegister');
 
 Route::get('/login/{lang?}', Login::class)
     ->name('login');
