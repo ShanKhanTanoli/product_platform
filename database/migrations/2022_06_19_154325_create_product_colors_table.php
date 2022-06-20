@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\ProductColor;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -32,6 +33,16 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+
+        for ($product = 1; $product < 31; $product++) {
+            for ($color = 1; $color < mt_rand(1, 3); $color++) {
+                ProductColor::create([
+                    'product_id' => $product,
+                    'color_id' => $color,
+                ]);
+            }
+        }
     }
 
     /**

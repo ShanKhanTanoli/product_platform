@@ -19,7 +19,7 @@
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="container">
-                                <form>
+                                <form wire:submit.prevent='UpdatePassword'>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label for="password">New Password</label>
@@ -54,11 +54,10 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-primary" wire:attr='disabled'
-                                                wire:click='UpdatePassword'>
+                                            <button type="submit" class="btn btn-primary" wire:attr='disabled'>
                                                 <span wire:loading class="spinner-border spinner-border-sm"
                                                     role="status" aria-hidden="true"></span>
-                                                    {{ trans('seller.save-changes') }}
+                                                {{ trans('seller.save-changes') }}
                                             </button>
                                         </div>
                                     </div>

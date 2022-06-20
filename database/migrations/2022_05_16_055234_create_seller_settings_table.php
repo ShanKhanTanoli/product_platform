@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('buyer_settings', function (Blueprint $table) {
+        Schema::create('seller_settings', function (Blueprint $table) {
             $table->id();
 
             //User Foreign Key
@@ -49,6 +49,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('buyer_settings');
+        Schema::dropIfExists('seller_settings');
     }
 };

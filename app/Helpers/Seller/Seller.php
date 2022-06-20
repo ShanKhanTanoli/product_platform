@@ -4,11 +4,12 @@ namespace App\Helpers\Seller;
 
 use App\Models\User as UserModel;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\Seller\Traits\SellerProducts;
 use App\Helpers\Seller\Traits\SellerSettings;
 
 class Seller
 {
-    use SellerSettings;
+    use SellerSettings,SellerProducts;
 
     public static function Is()
     {
