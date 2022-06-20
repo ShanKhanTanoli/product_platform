@@ -7,15 +7,12 @@
     "require": {
         "php": "^7.1|^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/cashier": "^13.10",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.10",
-        "matt-daneshvar/laravel-survey": "^0.2.1",
-        "simplesoftwareio/simple-qrcode": "^4.2",
-        "stripe/stripe-php": "^7.125"
+        "matt-daneshvar/laravel-survey": "^0.2.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

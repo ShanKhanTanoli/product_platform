@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\Seller\Traits;
+namespace App\Helpers\Buyer\Traits;
 
 use App\Models\SellerSetting;
 use App\Models\Currency;
