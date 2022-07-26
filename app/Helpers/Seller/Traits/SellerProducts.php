@@ -24,5 +24,18 @@ trait SellerProducts
         return self::LatestProducts($seller)
             ->count();
     }
+
+    public static function FindProduct($seller, $product)
+    {
+        return Product::where('user_id', $seller)
+            ->find($product);
+    }
+
+    public static function FindProductBySlug($seller, $slug)
+    {
+        return Product::where('user_id', $seller)
+            ->where('slug', $slug)
+            ->first();
+    }
     /*End::Seller Products*/
 }

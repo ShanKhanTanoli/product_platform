@@ -9,7 +9,7 @@ use App\Helpers\Seller\Traits\SellerSettings;
 
 class Seller
 {
-    use SellerSettings,SellerProducts;
+    use SellerSettings, SellerProducts;
 
     public static function Is()
     {

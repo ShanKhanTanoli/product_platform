@@ -200,6 +200,7 @@ return [
         'Seller' => App\Helpers\Seller\Seller::class,
         'Currency' => App\Helpers\Currency\Currency::class,
         'Language' => App\Helpers\Language\Language::class,
+        'Category' => App\Helpers\Category\Category::class,
         
 
     ])->toArray(),

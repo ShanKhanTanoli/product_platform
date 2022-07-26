@@ -29,7 +29,7 @@ Route::middleware(['auth', 'seller'])->prefix('Seller')->group(function () {
     /*Begin::Products*/
     Route::get('Products/{lang?}', Products::class)->name('SellerProducts');
     Route::get('AddProduct/{lang?}', AddProduct::class)->name('SellerAddProduct');
-    Route::get('EditProduct/{product}/{lang?}', EditProduct::class)->name('SellerEditProduct');
+    Route::get('EditProduct/{slug}/{lang?}', EditProduct::class)->name('SellerEditProduct');
     /*End::Products*/
 
     /*Begin::Settings*/

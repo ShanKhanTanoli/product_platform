@@ -10,6 +10,6 @@ class SellerSetting extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id','language_id',
+        'user_id','language_id','currency_id',
     ];
 }

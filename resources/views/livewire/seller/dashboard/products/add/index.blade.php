@@ -6,7 +6,7 @@
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                         <h6 class="text-white text-capitalize ps-3">
-                            {{ trans('admin.add-client') }}
+                            {{ trans('seller.add-product') }}
                         </h6>
                     </div>
                 </div>
@@ -16,10 +16,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.client-name') }}</label>
+                                        <label for="name">{{ trans('seller.product-name') }}</label>
                                         <input type="text" wire:model.defer='name' value="{{ old('name') }}"
                                             class="form-control  @error('name') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.client-name') }}">
+                                            placeholder="{{ trans('seller.product-name') }}">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -29,67 +29,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.client-username') }}</label>
-                                        <input type="text" wire:model.defer='user_name' value="{{ old('user_name') }}"
-                                            class="form-control  @error('user_name') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.client-username') }}">
-                                        @error('user_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.client-number') }}</label>
-                                        <input type="text" wire:model.defer='number' value="{{ old('number') }}"
-                                            class="form-control  @error('number') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.client-number') }}">
-                                        @error('number')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.client-email') }}</label>
-                                        <input type="text" wire:model.defer='email' value="{{ old('email') }}"
-                                            class="form-control  @error('email') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.client-email') }}">
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.client-password') }}</label>
-                                        <input type="password" wire:model.defer='password'
-                                            value="{{ old('password') }}"
-                                            class="form-control  @error('password') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.client-password') }}">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group input-group-static my-3">
-                                        <label for="name">{{ trans('admin.client-confirm-password') }}</label>
-                                        <input type="password" wire:model.defer='password_confirmation'
-                                            value="{{ old('password_confirmation') }}"
-                                            class="form-control  @error('password_confirmation') is-invalid @enderror"
-                                            placeholder="{{ trans('admin.client-confirm-password') }}">
-                                        @error('password_confirmation')
+                                        <label for="price">
+                                            {{ trans('seller.product-price') }}
+                                            ({{ Str::upper(Seller::Currency(Auth::user()->id)) }})
+                                        </label>
+                                        <input type="text" wire:model.defer='price' value="{{ old('price') }}"
+                                            class="form-control  @error('price') is-invalid @enderror"
+                                            placeholder="{{ trans('seller.product-price') }} ({{ Str::upper(Seller::Currency(Auth::user()->id)) }})">
+                                        @error('price')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -98,22 +45,64 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="input-group input-group-static my-3">
-                                        <label
-                                            for="parent_business_id">{{ trans('admin.client-joined-business') }}</label>
-                                        <select wire:model.defer='parent_business_id'
-                                            class="form-control  @error('parent_business_id') is-invalid @enderror">
-                                            <option value="">{{ trans('admin.client-joined-business') }}</option>
-                                            @forelse (Business::Latest()->get() as $business)
-                                                <option value="{{ $business->id }}">
-                                                    {{ $business->name }}
-                                                    -
-                                                    {{ $business->email }}
-                                                </option>
-                                            @empty
-                                                <option value=""></option>
-                                            @endforelse
+                                        <label for="description">{{ trans('seller.product-description') }}</label>
+                                        <textarea placeholder="{{ trans('seller.product-description') }}"
+                                            class="form-control  @error('description') is-invalid @enderror" wire:model.defer='description'>{{ old('description') }}</textarea>
+                                        @error('description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @if (Category::count() > 0)
+                                    <div class="col-md-12">
+                                        <div class="input-group input-group-static my-3">
+                                            <label for="category_id">{{ trans('seller.product-category') }}</label>
+                                            <select wire:model.defer='category_id'
+                                                class="form-control  @error('category_id') is-invalid @enderror">
+                                                <option value="">Select Category</option>
+                                                @foreach (Category::Latest() as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('category_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="col-md-12 text-danger">
+                                        Categories not found
+                                    </div>
+                                @endif
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-static my-3">
+                                        <label for="quantity">{{ trans('seller.product-quantity') }}</label>
+                                        <input type="text" wire:model.defer='quantity'
+                                            value="{{ old('quantity') }}"
+                                            class="form-control  @error('quantity') is-invalid @enderror"
+                                            placeholder="{{ trans('seller.product-quantity') }}">
+                                        @error('quantity')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group input-group-static my-3">
+                                        <label for="publish">{{ trans('seller.product-visibility') }}</label>
+                                        <select wire:model.defer='publish'
+                                            class="form-control  @error('publish') is-invalid @enderror">
+                                            <option value="">Select Visibility</option>
+                                            <option value="1">Publish</option>
+                                            <option value="0">Archive</option>
                                         </select>
-                                        @error('parent_business_id')
+                                        @error('publish')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -125,7 +114,7 @@
                                         <span wire:loading class="spinner-border spinner-border-sm" role="status"
                                             aria-hidden="true">
                                         </span>
-                                        {{ trans('admin.save-changes') }}
+                                        {{ trans('seller.save-changes') }}
                                     </button>
                                 </div>
                             </div>

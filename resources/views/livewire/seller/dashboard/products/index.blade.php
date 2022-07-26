@@ -70,13 +70,22 @@
                                         {{ trans('seller.products-table-price') }}
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        {{ trans('seller.products-category') }}
+                                        {{ trans('seller.products-table-category') }}
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        {{ trans('seller.products-quantity') }}
+                                        {{ trans('seller.products-table-quantity') }}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {{ trans('seller.products-table-sold') }}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {{ trans('seller.products-table-available') }}
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         {{ trans('seller.products-table-status') }}
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        {{ trans('seller.products-table-visibility') }}
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         {{ trans('seller.products-table-more') }}
@@ -111,7 +120,15 @@
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">
-                                                        Image
+                                                        @if ($product->featured_image)
+                                                            <img style="width: 20%;" id="featured-image"
+                                                                src="{{ Storage::url($product->featured_image) }}"
+                                                                class="rounded" alt="...">
+                                                        @else
+                                                            <img style="width: 20%;" id="featured-image"
+                                                                src="{{ asset('images/placeholder.jpg') }}"
+                                                                class="rounded" alt="...">
+                                                        @endif
                                                     </h6>
                                                 </div>
                                             </div>
@@ -121,6 +138,7 @@
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">
                                                         {{ $product->price }}
+                                                        {{ Str::upper(Seller::Currency(Auth::user()->id)) }}
                                                     </h6>
                                                 </div>
                                             </div>
@@ -128,9 +146,15 @@
                                         <td class="align-middle">
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">
-                                                        Cat
-                                                    </h6>
+                                                    @if ($category = Category::Find($product->category_id))
+                                                        <span class="badge bg-info">
+                                                            {!! $category->name !!}
+                                                        </span>
+                                                    @else
+                                                        <span class="badge bg-danger">
+                                                            NOT FOUND
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </td>
@@ -144,30 +168,107 @@
                                         <td class="align-middle">
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <span class="badge bg-info">
-                                                        STATUS
-                                                    </span>
+                                                    0
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="align-middle">
-                                            <button class="btn btn-sm btn-success"
-                                                wire:click='Edit("{{ $product->id }}")'>
-                                                <span wire:loading wire:target='Edit("{{ $product->id }}")'
-                                                    class="spinner-border spinner-border-sm" role="status"
-                                                    aria-hidden="true"></span>
-                                                {{ trans('admin.client-table-more') }}
-                                            </button>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    0
+                                                </div>
+                                            </div>
                                         </td>
                                         <td class="align-middle">
-                                            <button class="btn btn-sm btn-danger"
-                                                wire:click='DeleteConfirmation("{{ $product->id }}")'>
-                                                <span wire:loading
-                                                    wire:target='DeleteConfirmation("{{ $product->id }}")'
-                                                    class="spinner-border spinner-border-sm" role="status"
-                                                    aria-hidden="true"></span>
-                                                {{ trans('admin.client-table-delete') }}
-                                            </button>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <!--Begin::If Product Banned-->
+                                                    @if ($product->trashed())
+                                                        <span class="badge bg-danger">
+                                                            BANNED
+                                                        </span>
+                                                    @else
+                                                        <!--Begin::If Product is Published-->
+                                                        @if ($product->publish)
+                                                            <span class="badge bg-info">
+                                                                PUBLISHED
+                                                            </span>
+                                                        @else
+                                                            <span class="badge bg-danger">
+                                                                ARCHIVED
+                                                            </span>
+                                                        @endif
+                                                        <!--End::If Product is Published-->
+                                                    @endif
+                                                    <!--End::If Product Banned-->
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <!--Begin::If Product Banned-->
+                                                    @if ($product->trashed())
+                                                        <button class="btn btn-sm btn-danger disabled">
+                                                            BANNED
+                                                        </button>
+                                                    @else
+                                                        <!--Begin::If Product is Published-->
+                                                        @if ($product->publish)
+                                                            <button class="btn btn-sm btn-danger"
+                                                                wire:click='Archive("{{ $product->id }}")'>
+                                                                <span wire:loading
+                                                                    wire:target='Archive("{{ $product->id }}")'
+                                                                    class="spinner-border spinner-border-sm"
+                                                                    role="status" aria-hidden="true"></span>
+                                                                Archive
+                                                            </button>
+                                                        @else
+                                                            <button class="btn btn-sm btn-info"
+                                                                wire:click='Publish("{{ $product->id }}")'>
+                                                                <span wire:loading
+                                                                    wire:target='Publish("{{ $product->id }}")'
+                                                                    class="spinner-border spinner-border-sm"
+                                                                    role="status" aria-hidden="true"></span>
+                                                                Publish
+                                                            </button>
+                                                        @endif
+                                                        <!--End::If Product is Published-->
+                                                    @endif
+                                                    <!--End::If Product Banned-->
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">
+                                            @if ($product->trashed())
+                                                <button class="btn btn-sm btn-danger disabled">
+                                                    BANNED
+                                                </button>
+                                            @else
+                                                <button class="btn btn-sm btn-success"
+                                                    wire:click='Edit("{{ $product->slug }}")'>
+                                                    <span wire:loading wire:target='Edit("{{ $product->slug }}")'
+                                                        class="spinner-border spinner-border-sm" role="status"
+                                                        aria-hidden="true"></span>
+                                                    {{ trans('admin.seller-table-more') }}
+                                                </button>
+                                            @endif
+                                        </td>
+                                        <td class="align-middle">
+                                            @if ($product->trashed())
+                                                <button class="btn btn-sm btn-danger disabled">
+                                                    BANNED
+                                                </button>
+                                            @else
+                                                <button class="btn btn-sm btn-danger"
+                                                    wire:click='DeleteConfirmation("{{ $product->id }}")'>
+                                                    <span wire:loading
+                                                        wire:target='DeleteConfirmation("{{ $product->id }}")'
+                                                        class="spinner-border spinner-border-sm" role="status"
+                                                        aria-hidden="true"></span>
+                                                    {{ trans('admin.seller-table-delete') }}
+                                                </button>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

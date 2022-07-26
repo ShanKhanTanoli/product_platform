@@ -1,35 +1,26 @@
 <?php
 
-return [
 
-    /*Begin::Guest Sidebar*/
-    'dashboard' => 'Dashboard',
-    'business-plans' => 'Business Plans',
-    'events' => 'Events',
-    'subscriptions' => 'Subscriptions',
-    'settings' => 'Settings',
-    /*End::Guest Sidebar*/
+return array_merge(
 
-    /*Begin::Guest Settings Sidebar*/
-    'profile' => 'Profile',
-    'password' => 'Password',
-    /*End::Guest Settings Sidebar*/
+    //Global
+    [
+        'add-new' => 'Add New',
+    ],
 
-    /*Begin::Guest Password & Profile*/
-    'update-profile' => 'Update Profile',
-    'update-password' => 'Update Password',
-    /*End::Guest Password & Profile*/
+    /*Begin::Dashboard*/
+    include('seller/dashboard.php'),
+    /*End::Dashboard*/
+
+        /*Begin::Products*/
+        include('seller/products.php'),
+        /*End::Products*/
+
+    /*Begin::Settings*/
+    include('seller/settings.php'),
+    /*End::Settings*/
 
     /*Begin::Buttons*/
-    'save-changes' => 'Save Changes',
+    include('seller/buttons.php'),
     /*End::Buttons*/
-
-
-    /*Begin::Subscribe*/
-    'subscribe' => 'Subscribe',
-    /*End::Subscribe*/
-
-    /*Begin::Business Plans not found*/
-    'business-plan-not-found' => 'Plans will be available soon',
-    /*End::Business Plans not found*/
-];
+);

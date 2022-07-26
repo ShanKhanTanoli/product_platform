@@ -2,12 +2,13 @@
 
 use App\Helpers\Redirect;
 use App\Helpers\Admin\Admin;
+use App\Notifications\Alerts;
 use App\Helpers\Stripe\Stripe;
 use App\Helpers\Business\Business;
-use App\Notifications\Alerts;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use MattDaneshvar\Survey\Models\Survey;
 
 //Auth::routes();
 
@@ -18,6 +19,7 @@ Route::get('lang/{lang?}', function ($lang = "en") {
 });
 
 Route::get('debug', function () {
+    return view('flatsome.bumble');
 });
 
 
@@ -27,10 +29,9 @@ Route::get('/home/{lang?}', function () {
 
 
 Route::get('/{lang?}', function ($lang = "en") {
-    
+
     App::setLocale($lang);
     return redirect(Redirect::ToDashboard());
-
 })->name('main');
 
 /*Begin::Admin Routes*/

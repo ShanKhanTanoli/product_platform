@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse  w-auto h-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-white @if (Request::path() == 'Seller/Dashboard/' . App::getLocale()) ? active bg-gradient-primary : '' @endif"
+                <a class="nav-link text-white @if (Request::path() == 'Seller/Dashboard/' . App::getLocale()) ? active bg-gradient-primary @endif"
                     href="{{ route('SellerDashboard', App::getLocale()) }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-tachometer-alt"></i>
@@ -28,7 +28,7 @@
                 </h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white @if (Request::path() == 'Seller/Products/' . App::getLocale()) active @endif"
+                <a class="nav-link text-white @if (Request::path() == 'Seller/Products/' . App::getLocale()) active bg-gradient-primary @endif"
                     href="{{ route('SellerProducts', App::getLocale()) }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-box-open"></i>
