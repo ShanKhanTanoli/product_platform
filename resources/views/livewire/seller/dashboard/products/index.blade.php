@@ -121,11 +121,11 @@
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">
                                                         @if ($product->featured_image)
-                                                            <img style="width: 20%;" id="featured-image"
+                                                            <img style="width: 40%;" id="featured-image"
                                                                 src="{{ Storage::url($product->featured_image) }}"
                                                                 class="rounded" alt="...">
                                                         @else
-                                                            <img style="width: 20%;" id="featured-image"
+                                                            <img style="width: 40%;" id="featured-image"
                                                                 src="{{ asset('images/placeholder.jpg') }}"
                                                                 class="rounded" alt="...">
                                                         @endif
